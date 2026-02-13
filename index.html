@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary & Valentine's Day!</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+    font-family: 'Arial', sans-serif;
+    color: white;
+    position: relative;
+  }
+
+  /* Polaroid photo style */
+  .polaroid {
+    position: absolute;
+    width: 120px;
+    height: 150px;
+    background: white;
+    padding: 10px 10px 25px 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    transform: rotate(0deg);
+    overflow: hidden;
+    animation: drift linear infinite;
+  }
+
+  .polaroid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  @keyframes drift {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-200px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .message {
+    position: relative;
+    z-index: 1000;
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+    top: 30%;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 2s ease;
+  }
+
+  .message.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .message h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+    margin: 0;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  }
+
+  .message p {
+    font-size: 1.5em;
+    margin-top: 20px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: float 5s linear infinite;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: 10px;
+    top: 0;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-800px) rotate(45deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="message" id="message">
+  <h1>Happy Anniversary & Valentine's Day!</h1>
+  <p>Hi Love, Happy Anniversary and Valentine's Day. I just want to say thank you for everything. Minsan tinatanong ko sarili 
+    ko if I deserved this kind of love you gave me after all I've done to you. I'm so lucky to have you in my life, sobrang grabe
+    patience mo. I'm not good expressing my feelings pero sana magustuhan mo yung small gift ko for you sa maliit na bagay makabawi manlang sayo. I want to become a better person
+    for you, mahirap but sana maintindihan mo na I'm trying my best. ❤️</p>
+</div>
+
+<script>
+ // Array of photos
+const photoUrls = ['pic1.jpg', 'pic2.jpg', 'pic3.jpg', 'pic4.jpg']; 
+
+function createPolaroid() {
+  const polaroid = document.createElement('div');
+  polaroid.classList.add('polaroid');
+  polaroid.style.left = Math.random() * (window.innerWidth - 120) + 'px';
+  polaroid.style.animationDuration = 8 + Math.random() * 6 + 's';
+  polaroid.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+
+  const img = document.createElement('img');
+  // Pick a random photo from the array
+  const randomIndex = Math.floor(Math.random() * photoUrls.length);
+  img.src = photoUrls[randomIndex];
+
+  polaroid.appendChild(img);
+  document.body.appendChild(polaroid);
+
+  setTimeout(() => {
+    polaroid.remove();
+  }, 14000);
+}
+
+setInterval(createPolaroid, 800);
+
+
+  window.onload = () => {
+    const message = document.getElementById('message');
+    setTimeout(() => {
+      message.classList.add('show');
+    }, 500);
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+      heart.style.width = 10 + Math.random() * 20 + 'px';
+      heart.style.height = heart.style.width;
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+    setInterval(createHeart, 300);
+
+    // Polaroid photos drifting
+    function createPolaroid() {
+      const polaroid = document.createElement('div');
+      polaroid.classList.add('polaroid');
+      polaroid.style.left = Math.random() * (window.innerWidth - 120) + 'px';
+      polaroid.style.animationDuration = 8 + Math.random() * 6 + 's';
+      polaroid.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+
+      const img = document.createElement('img');
+      img.src = photoUrl;
+      polaroid.appendChild(img);
+      document.body.appendChild(polaroid);
+
+      setTimeout(() => {
+        polaroid.remove();
+      }, 14000);
+    }
+
+    setInterval(createPolaroid, 800);
+  }
+</script>
+
+</body>
+</html>
